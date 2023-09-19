@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
+@RequestMapping("/app")
 public class IndexController {
-    @GetMapping({"/index", "/", "/home"})
+    @GetMapping({"/index", "/"," ", "/home"})
     public String index(Model model) {
         model.addAttribute("titulo","Hola Spring Framework!");
         return "index";
