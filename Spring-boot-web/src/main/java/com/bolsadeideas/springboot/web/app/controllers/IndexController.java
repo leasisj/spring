@@ -4,6 +4,7 @@ import com.bolsadeideas.springboot.web.app.models.Usuario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,6 +34,12 @@ public class IndexController {
 
     @RequestMapping("/listar")
     public String listar(Model model) {
+        model.addAttribute("titulo", "Lista de usuarios");
+        return "listar";
+    }
+
+    @ModelAttribute("usuarios")
+    public List<Usuario> poblarUsuarios(){
         List<Usuario> usuarios = Arrays.asList(
                 new Usuario("Isael", "Jimenez", "isael@gmail.com"),
                 new Usuario("Susana", "Jimenez", "susana@gmail.com"),
@@ -40,8 +47,6 @@ public class IndexController {
                 new Usuario("Ismael", "Lopez", "ismael@gmail.com"),
                 new Usuario("Raquel", "Galicia", "raquel@gmail.com")
         );
-        model.addAttribute("titulo", "Lista de usuarios");
-        model.addAttribute("usuarios", usuarios);
-        return "listar";
+        return usuarios;
     }
 }
