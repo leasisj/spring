@@ -18,6 +18,7 @@ public class IndexController {
     @GetMapping({"/index", "/", " ", "/home"})
     public String index(Model model) {
         model.addAttribute("titulo", "Hola Spring Framework!");
+        model.addAttribute("texto","Decorando con estilos css estaticos");
         return "index";
     }
 
