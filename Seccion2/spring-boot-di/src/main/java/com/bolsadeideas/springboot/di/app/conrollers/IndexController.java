@@ -11,13 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class IndexController {
 
     @Autowired
-    //@Qualifier("miServicioSimplePrincipal")
+    @Qualifier("miServicioComplejo")
     private IServicio servicio;
-
-    //@Autowired
-    /*public IndexController(IServicio servicio) {
-        this.servicio = servicio;
-    }*/
     @GetMapping({"/index", "/", ""})
     public String index(Model model) {
         String operacion = servicio.operacion();
@@ -25,8 +20,4 @@ public class IndexController {
         model.addAttribute("texto", "La operacion realizada es: " + operacion);
         return "index";
     }
-    //@Autowired
-    /*public void setServicio(IServicio servicio) {
-        this.servicio = servicio;
-    }*/
 }
