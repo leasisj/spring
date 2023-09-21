@@ -3,6 +3,12 @@ package com.boldadeideas.springboot.form.app.Models.domain;
 import javax.validation.constraints.NotEmpty;
 
 public class Usuarios {
+
+    private String identificador;//como no esta en el formulario no se valida
+    @NotEmpty
+    private String nombre;
+    @NotEmpty
+    private String apellido;
     @NotEmpty//no puede ser vacio y es requerido
     private String username;
     @NotEmpty
@@ -17,6 +23,30 @@ public class Usuarios {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getUsername() {

@@ -9,12 +9,25 @@
 <h1 th:text="${titulo}"></h1>
 
 <form th:action="@{form}" th:object="${usuarios}" method="post">
-    <!--Se agrega el th:object="*{usuarios} para poder obtener los valores desde el controlador"-->
+    <div>
+        <label for="nombre">Nombre</label>
+        <div>
+            <input type="text" id="nombre" th:field="*{nombre}">
+            <!--Se modifica a th:field="*{username }" ya que se especifico arriba el objeto al que hace refernecia-->
+        </div>
+        <div th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
+    </div>
+    <div>
+        <label for="apellido">Apellico</label>
+        <div>
+            <input type="text" id="apellido" th:field="*{apellido}">
+        </div>
+        <div th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></div>
+    </div>
     <div>
         <label for="username">Username</label>
         <div>
             <input type="text" id="username" th:field="*{username}">
-            <!--Se modifica a th:field="*{username }" ya que se especifico arriba el objeto al que hace refernecia-->
         </div>
         <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
     </div>
