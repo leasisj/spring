@@ -7,7 +7,7 @@ import javax.validation.constraints.Size;
 public class Usuarios {
 
     private String identificador;//como no esta en el formulario no se valida
-    @NotEmpty(message = "El nombre no puede ser vacio")
+    @NotEmpty
     private String nombre;
     @NotEmpty
     private String apellido;
@@ -17,7 +17,7 @@ public class Usuarios {
     @NotEmpty
     private String password;
     @NotEmpty
-    @Email(message = "Correo con formato incorrecto")
+    @Email
     private String email;
 
     public Usuarios() {
