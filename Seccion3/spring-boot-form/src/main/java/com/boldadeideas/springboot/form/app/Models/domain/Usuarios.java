@@ -1,19 +1,23 @@
 package com.boldadeideas.springboot.form.app.Models.domain;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 public class Usuarios {
 
     private String identificador;//como no esta en el formulario no se valida
-    @NotEmpty
+    @NotEmpty(message = "El nombre no puede ser vacio")
     private String nombre;
     @NotEmpty
     private String apellido;
     @NotEmpty//no puede ser vacio y es requerido
+    @Size(min = 3, max = 10)
     private String username;
     @NotEmpty
     private String password;
     @NotEmpty
+    @Email(message = "Correo con formato incorrecto")
     private String email;
 
     public Usuarios() {
