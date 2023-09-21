@@ -1,8 +1,13 @@
 package com.boldadeideas.springboot.form.app.Models.domain;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Usuarios {
+    @NotEmpty//no puede ser vacio y es requerido
     private String username;
+    @NotEmpty
     private String password;
+    @NotEmpty
     private String email;
 
     public Usuarios() {
