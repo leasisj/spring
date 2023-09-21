@@ -8,27 +8,29 @@
 
 <h1 th:text="${titulo}"></h1>
 
-<form th:action="@{form}" method="post">
+<form th:action="@{form}" th:object="${usuarios}" method="post">
+    <!--Se agrega el th:object="*{usuarios} para poder obtener los valores desde el controlador"-->
     <div>
         <label for="username">Username</label>
         <div>
-            <input type="text" name="username" id="username" th:value="${usuarios?.username}">
+            <input type="text" id="username" th:field="*{username}">
+            <!--Se modifica a th:field="*{username }" ya que se especifico arriba el objeto al que hace refernecia-->
         </div>
-        <div th:if="${error!= null && error.containsKey('username')}" th:text="${error.get('username')}"></div>
+        <div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
     </div>
     <div>
         <label for="password">Password</label>
         <div>
-            <input type="password" name="password" id="password">
+            <input type="password" id="password" th:field="*{password}">
         </div>
-        <div th:if="${error!= null && error.containsKey('password')}" th:text="${error.get('password')}"></div>
+        <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
     </div>
     <div>
         <label for="email">Correo</label>
         <div>
-            <input type="text" name="email" id="email" th:value="${usuarios?.email}">
+            <input type="text" id="email" th:field="*{email}">
         </div>
-        <div th:if="${error!= null && error.containsKey('email')}" th:text="${error.get('email')}"></div>
+        <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
     </div>
 
     <div>
