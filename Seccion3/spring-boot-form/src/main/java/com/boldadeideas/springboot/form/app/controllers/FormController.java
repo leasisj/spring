@@ -1,5 +1,6 @@
 package com.boldadeideas.springboot.form.app.controllers;
 
+import com.boldadeideas.springboot.form.app.Models.domain.Usuarios;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +23,10 @@ public class FormController {
                            @RequestParam String email
 
     ) {
+
+        Usuarios usuario = new Usuarios(username, password, email); //No tiene sentido inllectar, ya que representan datos de nuestra clase entity
         model.addAttribute("titulo", "Datos del formulario");
-        model.addAttribute("username", username);
-        model.addAttribute("password", password);
-        model.addAttribute("email", email);
+        model.addAttribute("usuario", usuario);
         return "resultado"; //Se muestran los resutados que se evian atraves del formulario
         //Mas adelante este metodo va a mapear a la base de datos usando jpa
     }
