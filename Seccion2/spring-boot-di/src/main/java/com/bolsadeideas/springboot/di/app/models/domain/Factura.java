@@ -6,11 +6,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.ApplicationScope;
+import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.context.annotation.SessionScope;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Component
-public class Factura {
+@RequestScope //--Es para trabajar con sesiones
+//@SessionScope
+// --Esto funciona si queremos trabajar con seciones "Carro de compras o un sistema de autodentificacion "
+//@ApplicationScope //es muy paresido al singleton, pero se guarda en el contexto servlet
+public class Factura implements Serializable { //--Para ocupar el@SessionScope se tiene que implementar la serializacion
 
     @Value("${factura.descripcion}")
     private String descripcion;
