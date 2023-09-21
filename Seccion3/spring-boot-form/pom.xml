@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.4</version>
+        <version>2.5.4</version> <!-- Corregido a la versión 2.5.4 de Spring Boot -->
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.boldadeideas.springboot.app</groupId>
@@ -14,8 +14,9 @@
     <name>spring-boot-form</name>
     <description>spring-boot-form</description>
     <properties>
-        <java.version>21</java.version>
-    </properties>q
+        <!-- Corregido a la versión adecuada de Java (por ejemplo, 11) -->
+        <java.version>11</java.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -40,7 +41,8 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
-            <version>3.1.2</version>
+            <!-- Corregido a la versión 2.5.4 de Spring Boot -->
+            <version>2.5.4</version>
         </dependency>
     </dependencies>
 
