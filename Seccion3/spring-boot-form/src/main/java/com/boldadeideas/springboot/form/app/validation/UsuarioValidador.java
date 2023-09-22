@@ -20,7 +20,7 @@ public class UsuarioValidador implements Validator {//este deve importalo de spr
 
     @Override
     public void validate(Object o, Errors errors) {
-        Usuarios usuarios = (Usuarios) o;
+        //Usuarios usuarios = (Usuarios) o;
         //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "NotEmpty.usuarios.nombre");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "requerido.usuarios.nombre");
 
@@ -29,8 +29,8 @@ public class UsuarioValidador implements Validator {//este deve importalo de spr
             errors.rejectValue("nombre", "NotEmpty.usuarios.nombre");
         }*/
 
-        if (!usuarios.getIdentificador().matches("^\\d{2}\\.\\d{3}\\.\\d{3}-[A-Z]$")) {
+        /*if (!usuarios.getIdentificador().matches("^\\d{2}\\.\\d{3}\\.\\d{3}-[A-Z]$")) {
             errors.rejectValue("identificador", "Pattern.usuarios.identificador");
-        }
+        }*/
     }
 }

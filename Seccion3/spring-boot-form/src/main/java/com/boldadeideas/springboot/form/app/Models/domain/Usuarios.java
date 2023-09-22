@@ -1,5 +1,8 @@
 package com.boldadeideas.springboot.form.app.Models.domain;
 
+import com.boldadeideas.springboot.form.app.validation.ApellidoRegex;
+import com.boldadeideas.springboot.form.app.validation.IdentificadorRegex;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -8,12 +11,14 @@ import javax.validation.constraints.Size;
 public class Usuarios {
 
     //@Pattern(regexp = "^\\d{2}\\.\\d{3}\\.\\d{3}-[A-Z]$")
+    @IdentificadorRegex
     private String identificador;//como no esta en el formulario no se valida
     //@NotEmpty
     private String nombre;
-    @NotEmpty
+    @ApellidoRegex
     private String apellido;
-    @NotBlank  //va lida que no contenga espacions en blanco, se recomienda solo tener una de las dos @NotBlank o NotEmpty
+    @NotBlank
+    //va lida que no contenga espacions en blanco, se recomienda solo tener una de las dos @NotBlank o NotEmpty
     @Size(min = 3, max = 10)
     private String username;
     @NotEmpty

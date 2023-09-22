@@ -24,14 +24,9 @@ public class FormController {
     @Autowired
     private UsuarioValidador validador;
 
-    //El validador se implementa en el init binder, cuando se inicializa el proceso de validacion y el proseso de pasar los datos al objeto usuario
     @InitBinder
-    public void  initBinder(WebDataBinder binder){//el inid vinder es un elemento del siclo de vida del controlador
-        //binder.setValidator(validador);//esto solo aplica a la clase validador por eso tenemos un error
-        binder.addValidators(validador);//Esto agrega un nuevo validador al stack y no actualizar con set
-        //esto ayuda a validar pero de forma tranparente se regista el @Valid en el WebDataBinder
-        //Una ves que se envian los datos desde el formulario, se pueblan los datos y se valida
-        //esto por debajo se maneja con interseptores.
+    public void initBinder(WebDataBinder binder) {
+        binder.addValidators(validador);
     }
 
     @GetMapping("/form")
@@ -53,14 +48,10 @@ public class FormController {
         model.addAttribute("titulo", "Datos del formulario");
 
         if (result.hasErrors()) {
-            return "form"; //regresamos al formulario
+            return "form";
         }
         model.addAttribute("usuario", usuario);
-        //Cuando finaliza el proceso y se guarda en la base de datos, lo tenemos que limiar atraves de un objeto SessionStatus
-        status.setComplete();//lo que hace es completar y eliminar el objeto de la session inicial.
-        //El identificador es un atributo que esta en la clase pojo, pero que no esta en el formulario
-        //por lo que al ocupar el @SeccionAtribute y SessionStatus la informacion que esta en el objeto pero que no esta en el formulario
-        //no se pierde pero podemos modificar lo que esta en el formulrio sin que la informacion que esta en el objeto se pierda.
+        status.setComplete();
         return "resultado";
     }
 }
