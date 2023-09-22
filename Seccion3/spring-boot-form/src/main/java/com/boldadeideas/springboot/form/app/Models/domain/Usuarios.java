@@ -2,23 +2,22 @@ package com.boldadeideas.springboot.form.app.Models.domain;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 public class Usuarios {
 
-    @Pattern(regexp = "^\\d{2}\\.\\d{3}\\.\\d{3}-[A-Z]$")
+    //@Pattern(regexp = "^\\d{2}\\.\\d{3}\\.\\d{3}-[A-Z]$")
     private String identificador;//como no esta en el formulario no se valida
-    @NotEmpty
+    //@NotEmpty
     private String nombre;
-    @NotEmpty
+    //@NotEmpty
     private String apellido;
-    @NotEmpty//no puede ser vacio y es requerido
+    //@NotEmpty//no puede ser vacio y es requerido
     @Size(min = 3, max = 10)
     private String username;
-    @NotEmpty
+    //@NotEmpty
     private String password;
-    @NotEmpty
+    //@NotEmpty
     @Email
     private String email;
 

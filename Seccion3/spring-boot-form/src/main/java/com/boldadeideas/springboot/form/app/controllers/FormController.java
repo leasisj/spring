@@ -1,6 +1,8 @@
 package com.boldadeideas.springboot.form.app.controllers;
 
 import com.boldadeideas.springboot.form.app.Models.domain.Usuarios;
+import com.boldadeideas.springboot.form.app.validation.UsuarioValidador;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,9 @@ import java.util.Map;
 //pero si cambiamos un dato en el formulario, ese si se va actualizar por lo que se refleja el cambio.
 public class FormController {
 
+    @Autowired
+    private UsuarioValidador validador;//Inyectamos la clase clase validadora personalizada
+
     @GetMapping("/form")
     public String form(Model model) {
         Usuarios usuario = new Usuarios();
@@ -32,6 +37,9 @@ public class FormController {
 
     @PostMapping("/form")
     public String procesar(@Valid Usuarios usuario, BindingResult result, Model model, SessionStatus status) {
+
+        validador.validate(usuario, result);//colocamos el objeto validador, colocanto la clase pojo que es el objeto y el result que es el que tiene los errores
+
         model.addAttribute("titulo", "Datos del formulario");
 
         if (result.hasErrors()) {
