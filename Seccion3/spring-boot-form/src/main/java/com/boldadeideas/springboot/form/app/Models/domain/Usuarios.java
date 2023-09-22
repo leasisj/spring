@@ -2,8 +2,10 @@ package com.boldadeideas.springboot.form.app.Models.domain;
 
 import com.boldadeideas.springboot.form.app.validation.ApellidoRegex;
 import com.boldadeideas.springboot.form.app.validation.IdentificadorRegex;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
+import java.util.Date;
 
 public class Usuarios {
 
@@ -29,6 +31,10 @@ public class Usuarios {
     @Max(5000)
     private Integer cuenta;
 
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fechanacimiento;
+
     public Usuarios() {
     }
 
@@ -36,6 +42,14 @@ public class Usuarios {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public Date getFechanacimiento() {
+        return fechanacimiento;
+    }
+
+    public void setFechanacimiento(Date fechanacimiento) {
+        this.fechanacimiento = fechanacimiento;
     }
 
     public Integer getCuenta() {
