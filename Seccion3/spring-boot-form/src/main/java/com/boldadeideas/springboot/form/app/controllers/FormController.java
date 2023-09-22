@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -17,12 +19,20 @@ import java.util.Map;
 
 @Controller
 @SessionAttributes("usuarios")
-//para mantener la session http, se mantienen de manera persistente enttre el formulario y el procesar cuando se envian datos
-//pero si cambiamos un dato en el formulario, ese si se va actualizar por lo que se refleja el cambio.
 public class FormController {
 
     @Autowired
-    private UsuarioValidador validador;//Inyectamos la clase clase validadora personalizada
+    private UsuarioValidador validador;
+
+    //El validador se implementa en el init binder, cuando se inicializa el proceso de validacion y el proseso de pasar los datos al objeto usuario
+    @InitBinder
+    public void  initBinder(WebDataBinder binder){//el inid vinder es un elemento del siclo de vida del controlador
+        //binder.setValidator(validador);//esto solo aplica a la clase validador por eso tenemos un error
+        binder.addValidators(validador);//Esto agrega un nuevo validador al stack y no actualizar con set
+        //esto ayuda a validar pero de forma tranparente se regista el @Valid en el WebDataBinder
+        //Una ves que se envian los datos desde el formulario, se pueblan los datos y se valida
+        //esto por debajo se maneja con interseptores.
+    }
 
     @GetMapping("/form")
     public String form(Model model) {
@@ -38,7 +48,7 @@ public class FormController {
     @PostMapping("/form")
     public String procesar(@Valid Usuarios usuario, BindingResult result, Model model, SessionStatus status) {
 
-        validador.validate(usuario, result);//colocamos el objeto validador, colocanto la clase pojo que es el objeto y el result que es el que tiene los errores
+        //validador.validate(usuario, result); //lo comentamos apra que se valide con la anotacion @Valid de forma automatica
 
         model.addAttribute("titulo", "Datos del formulario");
 

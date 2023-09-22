@@ -21,12 +21,8 @@ public class UsuarioValidador implements Validator {//este deve importalo de spr
     @Override
     public void validate(Object o, Errors errors) {
         Usuarios usuarios = (Usuarios) o;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "NotEmpty.usuarios.nombre");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "apellido", "NotEmpty.usuarios.apellido");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty.usuarios.username");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty.usuarios.password");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Email.usuarios.email");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty.usuarios.email");
+        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "NotEmpty.usuarios.nombre");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "nombre", "requerido.usuarios.nombre");
 
         //Esto es lo mismo a lo de arriba
         /*if (usuarios.getNombre().isEmpty()){
