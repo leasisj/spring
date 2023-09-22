@@ -3,10 +3,7 @@ package com.boldadeideas.springboot.form.app.Models.domain;
 import com.boldadeideas.springboot.form.app.validation.ApellidoRegex;
 import com.boldadeideas.springboot.form.app.validation.IdentificadorRegex;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class Usuarios {
 
@@ -27,6 +24,11 @@ public class Usuarios {
     @Email
     private String email;
 
+    @NotNull  //@Not null es para tipo objetos
+    @Min(5)
+    @Max(5000)
+    private Integer cuenta;
+
     public Usuarios() {
     }
 
@@ -34,6 +36,14 @@ public class Usuarios {
         this.username = username;
         this.password = password;
         this.email = email;
+    }
+
+    public Integer getCuenta() {
+        return cuenta;
+    }
+
+    public void setCuenta(Integer cuenta) {
+        this.cuenta = cuenta;
     }
 
     public String getIdentificador() {
