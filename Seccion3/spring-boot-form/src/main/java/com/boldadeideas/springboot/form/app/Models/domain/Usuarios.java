@@ -32,7 +32,10 @@ public class Usuarios {
     private Integer cuenta;
 
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")//Da el formato de la fecha
+    //@Past//fecha en el pasado
+    //@FutureOrPresent// fecha delfuturo o del presente
+    //@Future
     private Date fechanacimiento;
 
     public Usuarios() {
